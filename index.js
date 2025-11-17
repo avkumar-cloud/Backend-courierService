@@ -7,7 +7,7 @@ import cors from "cors";
 const PORT = 3000;
 import { calculatedDiscount } from './controller.js';
 
-// Middleware to parse JSON
+
 app.use(cors({
     origin: ["https://courier-service-snowy.vercel.app",
             "http://localhost:5173"],
@@ -16,7 +16,6 @@ app.use(cors({
     credentials: true,
     preflightContinue: false,
     optionsSuccessStatus: 200,
-  
 }));
 app.use(express.json());
 dotenv.config();
@@ -25,12 +24,11 @@ mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log("✅ MongoDB Connected"))
   .catch(err => console.log("❌ MongoDB Error:", err));
 
-// Sample route
+
 app.post("/",(req,res)=>{
   res.send("Server running");
 });
 
-// calculate:
 app.post("/calculate", calculatedDiscount);
 
 

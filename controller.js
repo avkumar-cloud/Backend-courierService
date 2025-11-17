@@ -3,9 +3,6 @@ import { Courier } from "./model/CourierModel.js";
 export const calculatedDiscount = async(req,res) =>{
     try {
         let {basePrice, packageCount, packages} = req.body;
-         await Courier.create({
-            basePrice, packageCount, packages
-        })
         const arr = [];
         let id;
         basePrice = Number(basePrice);
@@ -25,10 +22,14 @@ export const calculatedDiscount = async(req,res) =>{
             const costAfterDiscount = cost-discount;
             arr.push({packageId: id, discount, costAfterDiscount})
         }
-        return res.json({
+        res.json({
             success: true,
             results: arr
-        })        
+        })  
+        
+         await Courier.create({
+            basePrice, packageCount, packages
+        })
     } catch (error) {
         res.status(500).json({success: false, error: error.message})
     }
