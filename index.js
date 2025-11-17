@@ -8,15 +8,7 @@ const PORT = 3000;
 import { calculatedDiscount } from './controller.js';
 
 
-app.use(cors({
-    origin: ["https://courier-service-snowy.vercel.app",
-            "http://localhost:5173"],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type"],
-    credentials: true,
-    preflightContinue: false,
-    optionsSuccessStatus: 200,
-}));
+app.use(cors());
 app.use(express.json());
 dotenv.config();
 
