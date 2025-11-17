@@ -3,7 +3,7 @@ import { Courier } from "./model/CourierModel.js";
 export const calculatedDiscount = async(req,res) =>{
     try {
         let {basePrice, packageCount, packages} = req.body;
-        const savedDoc = await Courier.create({
+         await Courier.create({
             basePrice, packageCount, packages
         })
         const arr = [];
