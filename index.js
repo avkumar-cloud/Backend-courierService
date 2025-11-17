@@ -9,7 +9,13 @@ import { calculatedDiscount } from './controller.js';
 
 // Middleware to parse JSON
 app.use(cors({
-  origin: ["https://courier-service-snowy.vercel.app"]
+  origin: "https://courier-service-snowy.vercel.app",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type"],
+    credentials: true,
+    preflightContinue: false,
+    optionsSuccessStatus: 200,
+  
 }));
 app.use(express.json());
 dotenv.config();
