@@ -9,8 +9,7 @@ import { calculatedDiscount } from './controller.js';
 
 // Middleware to parse JSON
 app.use(cors({
-  origin: ["https://courier-service-snowy.vercel.app/", 
-    "https://courier-service-snowy.vercel.app/"]
+  origin: ["https://courier-service-snowy.vercel.app"]
 }));
 app.use(express.json());
 dotenv.config();
