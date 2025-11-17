@@ -9,7 +9,8 @@ import { calculatedDiscount } from './controller.js';
 
 // Middleware to parse JSON
 app.use(cors({
-  origin: "https://courier-service-snowy.vercel.app",
+    origin: ["https://courier-service-snowy.vercel.app",
+            "http://localhost:5173"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type"],
     credentials: true,
