@@ -1,4 +1,3 @@
-// index.js
 import express from 'express';
 import mongoose, { Mongoose } from 'mongoose';
 import dotenv from "dotenv";

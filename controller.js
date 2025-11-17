@@ -6,7 +6,7 @@ export const calculatedDiscount = async(req,res) =>{
         const arr = [];
         let id;
         basePrice = Number(basePrice);
-        for(let i=0;i<packageCount;i++){
+        for(let i=0;i<packages.length;i++){
             let weight = Number(packages[i].weight);
             let  distance = Number(packages[i].distance);
             id = packages[i].id
