@@ -9,17 +9,16 @@ export const calculatedDiscount = async(req,res) =>{
         for(let i=0;i<packages.length;i++){
             let weight = Number(packages[i].weight);
             let  distance = Number(packages[i].distance);
-            id = packages[i].id
+            id = packages[i].id;
+            const cost = basePrice + (weight*10) + (distance*5); 
             let discount = packages[i].offerCode;
             discount = discount.slice(discount.length-2);
             discount = Number(discount);
             if(isNaN(discount)) discount=0;
-            else {
-               const cost = basePrice + (weight*10) + (distance*5);  
-               const discountAmount = (discount/100) * cost;         
-               const costAfterDiscount = (cost-discountAmount).toFixed(2);
-               arr.push({packageId: id, discount:discountAmount.toFixed(2), costAfterDiscount})
-        }
+            else discount = (discount/100) * cost;       
+            const costAfterDiscount = Math.round((cost-discount));
+            arr.push({packageId: id, discount:Math.round(discount), costAfterDiscount})
+        
 
         res.json({
             success: true,
