@@ -10,16 +10,12 @@ export const calculatedDiscount = async(req,res) =>{
             let weight = Number(packages[i].weight);
             let  distance = Number(packages[i].distance);
             id = packages[i].id
-            let discount = 0;
-            const cost = basePrice + (weight*10) + (distance*5);
-            if(distance<200 && (weight>=70 && weight<=200)){
-                discount = 0.1*cost;
-            }else if((distance>50 && distance<150) && (weight>=100 && weight<=250)){
-                discount = 0.07*cost;
-            }else if((distance>50 && distance<250) && (weight>=10 && weight<=150)){
-                discount = 0.05*cost;
-            }
-            const costAfterDiscount = cost-discount;
+            let discount = packages[i].offerCode;
+            discount = discount.slice(discount.length-2);
+            if(isNaN(discount)) discount=0;
+            else discount = Math.round(Number(discount),2);
+            const cost = basePrice + (weight*10) + (distance*5);            
+            const costAfterDiscount = Math.round((cost-discount),2);
             arr.push({packageId: id, discount, costAfterDiscount})
         }
         res.json({
