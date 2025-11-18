@@ -18,17 +18,16 @@ export const calculatedDiscount = async(req,res) =>{
             else discount = (discount/100) * cost;       
             const costAfterDiscount = Math.round((cost-discount));
             arr.push({packageId: id, discount:Math.round(discount), costAfterDiscount})
-        
-
-        res.json({
-            success: true,
-            results: arr
-        })  
+         
         
          await Courier.create({
             basePrice, packageCount, packages
         })
     }
+    res.json({
+            success: true,
+            results: arr
+        }) 
     } catch (error) {
         res.status(500).json({success: false, error: error.message})
     }
