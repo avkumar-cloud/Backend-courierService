@@ -20,14 +20,15 @@ export const calculatedDiscount = async(req,res) =>{
             arr.push({packageId: id, discount:Math.round(discount), costAfterDiscount})
          
         
-         await Courier.create({
-            basePrice, packageCount, packages
-        })
     }
     res.json({
             success: true,
             results: arr
         }) 
+
+        await Courier.create({
+            basePrice, packageCount, packages
+        })
     } catch (error) {
         res.status(500).json({success: false, error: error.message})
     }
