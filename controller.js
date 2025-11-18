@@ -12,12 +12,15 @@ export const calculatedDiscount = async(req,res) =>{
             id = packages[i].id
             let discount = packages[i].offerCode;
             discount = discount.slice(discount.length-2);
+            discount = Number(discount);
             if(isNaN(discount)) discount=0;
-            else discount = Math.round(Number(discount),2);
-            const cost = basePrice + (weight*10) + (distance*5);            
-            const costAfterDiscount = Math.round((cost-discount),2);
-            arr.push({packageId: id, discount, costAfterDiscount})
+            else {
+               const cost = basePrice + (weight*10) + (distance*5);  
+               const discountAmount = (discount/100) * cost;         
+               const costAfterDiscount = (cost-discountAmount).toFixed(2);
+               arr.push({packageId: id, discount:discountAmount.toFixed(2), costAfterDiscount})
         }
+
         res.json({
             success: true,
             results: arr
@@ -26,6 +29,7 @@ export const calculatedDiscount = async(req,res) =>{
          await Courier.create({
             basePrice, packageCount, packages
         })
+    }
     } catch (error) {
         res.status(500).json({success: false, error: error.message})
     }
